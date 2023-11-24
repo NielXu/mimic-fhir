@@ -12,9 +12,7 @@ CREATE TABLE mimic_fhir.medication_mix(
 WITH medication_identifier AS (
     SELECT 
        (    
-            drug
-            || CASE WHEN (formulary_drug_cd IS NOT NULL) AND (formulary_drug_cd != '') 
-                    THEN '--' || formulary_drug_cd ELSE '' END    
+            drug  
             || CASE WHEN (ndc IS NOT NULL) AND (ndc !='0') AND (ndc != '') 
                     THEN '--' || ndc ELSE '' END
         ) AS med_id
@@ -22,7 +20,7 @@ WITH medication_identifier AS (
         , drug
         , drug_type
     FROM 
-        mimiciv_hosp.prescriptions pr
+        mimic_hosp.prescriptions pr
 ), medication_mix AS (
     SELECT DISTINCT 
         -- For prescriptions with multiple drugs prescribed, put the drugs under ingredients
@@ -40,7 +38,7 @@ WITH medication_identifier AS (
         -- Multiple additives are allowed, so these are ordered alphabetically 
         , STRING_AGG(mid.med_id, '_' ORDER BY pr.drug_type DESC, pr.drug ASC) AS medmix_id   
     FROM 
-        mimiciv_hosp.prescriptions pr
+        mimic_hosp.prescriptions pr
         LEFT JOIN medication_identifier mid
             ON pr.pharmacy_id = mid.pharmacy_id
             AND pr.drug = mid.drug

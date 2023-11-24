@@ -12,5 +12,5 @@ INSERT INTO fhir_trm.cs_d_items
 SELECT 
     DISTINCT itemid AS code
     , label AS display
-FROM mimiciv_icu.d_items di 
+FROM mimic_icu.d_items di 
 WHERE linksto IN ('procedureevents', 'datetimeevents', 'outputevents');

@@ -12,5 +12,5 @@
 \i medication/medication_prescriptions.sql
 
 -- medication mix generation
-\echo Medication mix
-\i medication/medication_mix.sql
+-- \echo Medication mix
+-- \i medication/medication_mix.sql

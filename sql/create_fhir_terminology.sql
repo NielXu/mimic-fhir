@@ -40,9 +40,6 @@ CREATE SCHEMA IF NOT EXISTS fhir_trm;
 \echo Medication ICU
 \i codesystem/cs-medication-icu.sql
 
-\echo Medication Formulary Drug Cd
-\i codesystem/cs-medication-formulary-drug-cd.sql
-
 \echo Medication Name
 \i codesystem/cs-medication-name.sql
 

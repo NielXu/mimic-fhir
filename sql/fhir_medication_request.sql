@@ -26,14 +26,12 @@ WITH prescript_request AS (
         , MAX(prod_strength) AS prod_strength
         , STRING_AGG( 
              drug
-            || CASE WHEN (formulary_drug_cd IS NOT NULL) AND (formulary_drug_cd != '') 
-                    THEN '--' || formulary_drug_cd ELSE '' END    
             || CASE WHEN (ndc IS NOT NULL) AND (ndc !='0') AND (ndc != '') 
                     THEN '--' || ndc ELSE '' END            
             , '_' ORDER BY pr.drug_type DESC, pr.drug ASC
         ) AS drug_code  
     FROM 
-        mimiciv_hosp.prescriptions pr
+        mimic_hosp.prescriptions pr
     GROUP BY pr.pharmacy_id 
 ), fhir_medication_request AS (
 	SELECT
@@ -78,7 +76,7 @@ WITH prescript_request AS (
   		, uuid_generate_v5(ns_encounter.uuid, CAST(pr.hadm_id AS TEXT)) AS uuid_HADM_ID
   	FROM
   	    prescript_request pr
-  	    LEFT JOIN mimiciv_hosp.pharmacy ph
+  	    LEFT JOIN mimic_hosp.pharmacy ph
             ON pr.pharmacy_id = ph.pharmacy_id  
   		LEFT JOIN fhir_etl.uuid_namespace ns_encounter
   			ON ns_encounter.name = 'Encounter'
@@ -187,17 +185,17 @@ FROM
 
 -- get unique poe_id that show up in emar, without pharmacy_id and with medication or poe iv order
 WITH prescriptions AS (
-    SELECT DISTINCT pharmacy_id FROM mimiciv_hosp.prescriptions 
+    SELECT DISTINCT pharmacy_id FROM mimic_hosp.prescriptions 
 ), poe_medreq AS (
     SELECT DISTINCT 
         em.poe_id
         , em.medication
         , poe.order_type 
     FROM 
-        mimiciv_hosp.emar em
+        mimic_hosp.emar em
         LEFT JOIN prescriptions pr
             ON em.pharmacy_id = pr.pharmacy_id
-        LEFT JOIN mimiciv_hosp.poe
+        LEFT JOIN mimic_hosp.poe
             ON em.poe_id = poe.poe_id
     WHERE 
         pr.pharmacy_id IS NULL
@@ -229,7 +227,7 @@ WITH prescriptions AS (
         , uuid_generate_v5(ns_encounter.uuid, CAST(poe.hadm_id AS TEXT)) AS uuid_HADM_ID
     FROM
         poe_medreq pm
-        INNER JOIN mimiciv_hosp.poe poe
+        INNER JOIN mimic_hosp.poe poe
             ON pm.poe_id = poe.poe_id
         
         -- uuid namespaces

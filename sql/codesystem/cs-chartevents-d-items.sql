@@ -13,6 +13,6 @@ SELECT DISTINCT
     itemid AS code
     , label AS display
 FROM 
-    mimiciv_icu.d_items di 
+    mimic_icu.d_items di 
 WHERE linksto = 'chartevents'
             

@@ -8,6 +8,6 @@ CREATE TABLE fhir_trm.cs_observation_category(
 
 INSERT INTO fhir_trm.cs_observation_category
 SELECT DISTINCT di.category
-FROM mimiciv_icu.d_items di 
+FROM mimic_icu.d_items di 
 
 

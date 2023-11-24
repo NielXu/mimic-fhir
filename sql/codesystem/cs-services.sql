@@ -8,4 +8,4 @@ CREATE TABLE fhir_trm.cs_services(
 
 INSERT INTO fhir_trm.cs_services 
 SELECT DISTINCT curr_service
-FROM mimiciv_hosp.services;
+FROM mimic_hosp.services;

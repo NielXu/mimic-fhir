@@ -10,5 +10,5 @@ INSERT INTO fhir_trm.cs_microbiology_antibiotic
 SELECT DISTINCT 
     ab_itemid AS code
     , ab_name AS display
-FROM mimiciv_hosp.microbiologyevents m 
+FROM mimic_hosp.microbiologyevents m 
 WHERE ab_itemid IS NOT NULL

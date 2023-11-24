@@ -25,7 +25,7 @@ WITH micro_info AS (
                 )
             END as fhir_SUSCEPTIBILITY
     FROM 
-        mimiciv_hosp.microbiologyevents mi
+        mimic_hosp.microbiologyevents mi
         LEFT JOIN fhir_etl.uuid_namespace ns_observation_micro_susc
             ON ns_observation_micro_susc.name = 'ObservationMicroSusc'
     WHERE

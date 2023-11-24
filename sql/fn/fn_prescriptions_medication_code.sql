@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION fhir_etl.fn_prescriptions_medication_code(ndc VARCHAR(25), formulary_drug_cd VARCHAR(120), drug VARCHAR(255))
+CREATE OR REPLACE FUNCTION fhir_etl.fn_prescriptions_medication_code(ndc VARCHAR(25), drug VARCHAR(255))
   returns jsonb
   language 'plpgsql'
 as
@@ -11,11 +11,6 @@ begin
             jsonb_build_object(
                 'system', 'http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-ndc'  
                 , 'code', ndc
-            )::TEXT
-        WHEN formulary_drug_cd IS NOT NULL AND formulary_drug_cd != '' THEN
-            jsonb_build_object(
-                'system', 'http://mimic.mit.edu/fhir/mimic/CodeSystem/mimic-medication-formulary-drug-cd'  
-                , 'code', TRIM(REGEXP_REPLACE(formulary_drug_cd , '\s+', ' ', 'g'))
             )::TEXT
         ELSE
             jsonb_build_object(

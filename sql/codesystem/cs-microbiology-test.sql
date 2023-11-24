@@ -10,5 +10,5 @@ INSERT INTO fhir_trm.cs_microbiology_test
 SELECT DISTINCT 
     test_itemid AS code
     , test_name AS display 
-FROM mimiciv_hosp.microbiologyevents m 
+FROM mimic_hosp.microbiologyevents m 
 WHERE test_itemid IS NOT NULL

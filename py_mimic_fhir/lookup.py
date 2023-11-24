@@ -182,7 +182,7 @@ MIMIC_CODESYSTEMS = [
     'chartevents_d_items', 'd_items', 'd_labitems', 'diagnosis_icd9',
     'diagnosis_icd10', 'discharge_disposition', 'hcpcs_cd', 'lab_fluid',
     'lab_priority', 'medadmin_category_icu', 'medication_etc', 'medication_icu',
-    'medication_formulary_drug_cd', 'medication_frequency', 'medication_gsn',
+    'medication_frequency', 'medication_gsn',
     'medication_method', 'medication_method_icu', 'medication_name',
     'medication_ndc', 'medication_poe_iv', 'medication_route',
     'medication_site', 'microbiology_antibiotic', 'microbiology_organism',

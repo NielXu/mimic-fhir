@@ -1,3 +1,9 @@
+# Forked Version
+1. Remove the use of gcp_args (Google Cloud Project) so that it does not stop you from using HAPI (by default it initialize GCP even if you choose to use HAPI). You can undo this by uncomment `py_mimic_fhir/__main__.py` line 427 - 430.
+2. Rename table names in all sql files `mimic_iv -> mimic`, `mimiciv_hosp.admissions/patients/encounters/transfers -> mimic_core.admissions/patients/encounters/transfers`.
+3. Remove the use of `formulary_drug_cd` in the prescriptions table because it does not exist in the older data.
+4. Modify some of the functions that contain `formulary_drug_cd` so that it does not include it anymore, for example `sql/fhir_medication_request.sql`.
+
 # mimic-fhir
 
 This repository provides code for converting the [MIMIC-IV](https://physionet.org/content/mimiciv/2.2/) and [MIMIC-IV-ED](https://physionet.org/content/mimic-iv-ed/2.2/) databases into [FHIR](https://www.hl7.org/fhir/).

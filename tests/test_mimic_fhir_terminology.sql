@@ -11,7 +11,6 @@ WITH table_counts AS
     
     UNION ALL SELECT 'CodeSystem' AS resource, 'Medication' AS category, COUNT(*) AS n_row_observed, 16 AS n_row_expected, 'MedAdminCategoryICU' AS table_name FROM fhir_trm.cs_medadmin_category_icu
     UNION ALL SELECT 'CodeSystem' AS resource, 'Medication' AS category, COUNT(*) AS n_row_observed, 1208 AS n_row_expected, 'MedicationEtc' AS table_name FROM fhir_trm.cs_medication_etc
-    UNION ALL SELECT 'CodeSystem' AS resource, 'Medication' AS category, COUNT(*) AS n_row_observed, 4128 AS n_row_expected, 'MedicationFormularyDrugCd' AS table_name FROM fhir_trm.cs_medication_formulary_drug_cd
     UNION ALL SELECT 'CodeSystem' AS resource, 'Medication' AS category, COUNT(*) AS n_row_observed, 163 AS n_row_expected, 'MedicationFrequency' AS table_name FROM fhir_trm.cs_medication_frequency
     UNION ALL SELECT 'CodeSystem' AS resource, 'Medication' AS category, COUNT(*) AS n_row_observed, 9430 AS n_row_expected, 'MedicationGsn' AS table_name FROM fhir_trm.cs_medication_gsn    
     UNION ALL SELECT 'CodeSystem' AS resource, 'Medication' AS category, COUNT(*) AS n_row_observed, 474 AS n_row_expected, 'MedicationICU' AS table_name FROM fhir_trm.cs_medication_icu

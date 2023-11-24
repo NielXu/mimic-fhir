@@ -147,3 +147,7 @@ tutorial/pathling/output
 
 # Outputs
 output/
+
+*mimiciv*
+*hapi-fhir-jpaserver-starter*
+*local_mimic_fhir_files*
